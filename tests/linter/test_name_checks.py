@@ -452,3 +452,18 @@ var XY_Z = load()
 ])
 def test_class_load_variable_name_nok(code):
     simple_nok_check(code, 'class-load-variable-name')
+
+
+@pytest.mark.parametrize('code', [
+"""
+var x = get("something")
+""",
+"""
+var x = foo("something")
+""",
+"""
+var x = set("something")
+""",
+])
+def test_name_token_get_and_set(code):
+    simple_ok_check(code)
